@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.time.LocalDateTime;
+import java.time.Instant;
 import java.util.Collection;
 import java.util.List;
 import java.util.UUID;
@@ -18,15 +18,19 @@ import java.util.UUID;
 @Builder
 public class AppUser implements UserDetails {
     private UUID appUserId;
-    private String username;
+    private String name;
     private String email;
     private String password;
     private Integer level;
     private Integer xp;
     private String profileImageUrl;
     private Boolean isVerified;
-    private LocalDateTime createdAt;
+    private Instant createdAt;
 
+    @Override
+    public String getUsername() {
+        return email;
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
