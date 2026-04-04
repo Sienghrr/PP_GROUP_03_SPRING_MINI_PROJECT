@@ -1,15 +1,14 @@
 package com.kshrd.habittracker.dto.request.auth;
 
-import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 
 @Data
 public class LoginRequest {
-    @Email
-    @NotBlank
+
+    @NotBlank(message = "identifier cannot be blank")
     private String identifier;
 
-    @NotBlank
+    @NotBlank(message = "identifier cannot be blank")
     private String password;
 }
