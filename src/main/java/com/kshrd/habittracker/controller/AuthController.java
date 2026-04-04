@@ -8,7 +8,6 @@ import com.kshrd.habittracker.dto.response.appuser.AppUserResponse;
 import com.kshrd.habittracker.service.AuthService;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -25,19 +24,19 @@ public class AuthController {
     @PostMapping("/register")
     public ResponseEntity<ApiResponse<AppUserResponse>> register(@Valid @RequestBody RegisterRequest request) {
         return ResponseEntity.status(HttpStatus.CREATED).body(
-                ApiResponse.success(authService.register(request),"User Registered successfully. Please verify your email to complete the registration.",HttpStatus.CREATED)
+                ApiResponse.success(authService.register(request), "User Registered successfully. Please verify your email to complete the registration.", HttpStatus.CREATED)
         );
     }
 
     @PostMapping("/verify")
     public ResponseEntity<ApiResponse<Void>> verify(
             @Valid
-            @Email @NotBlank @RequestParam String email,
-            @NotBlank @Size(min = 6, max = 6) @RequestParam String otp
-            ) {
-        authService.verify(email,otp);
+            @Email @RequestParam String email,
+            @Size(min = 6, max = 6) @RequestParam String otp
+    ) {
+        authService.verify(email, otp);
         return ResponseEntity.ok(
-                ApiResponse.success(null,"Email successfully verified. You can now log in.",HttpStatus.OK)
+                ApiResponse.success(null, "Email successfully verified. You can now log in.", HttpStatus.OK)
         );
     }
 
@@ -45,10 +44,10 @@ public class AuthController {
     public ResponseEntity<ApiResponse<Void>> resend(
             @Valid
             @Email
-            @NotBlank @RequestParam String email) {
+            @RequestParam String email) {
         authService.resend(email);
         return ResponseEntity.ok(
-                ApiResponse.success(null,"Verification OTP resent successfully",HttpStatus.OK)
+                ApiResponse.success(null, "Verification OTP resent successfully", HttpStatus.OK)
 
         );
     }
@@ -56,7 +55,7 @@ public class AuthController {
     @PostMapping("/login")
     public ResponseEntity<ApiResponse<AuthResponse>> login(@Valid @RequestBody LoginRequest request) {
         return ResponseEntity.ok(
-                ApiResponse.success(authService.login(request),"Login successful. Authentication token generated",HttpStatus.OK)
+                ApiResponse.success(authService.login(request), "Login successful. Authentication token generated", HttpStatus.OK)
 
         );
     }

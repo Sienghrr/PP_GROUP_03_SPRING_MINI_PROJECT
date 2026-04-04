@@ -13,9 +13,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.Instant;
-import java.util.UUID;
-
 @RestController
 @RequestMapping("/api/v1/profiles")
 @RequiredArgsConstructor
@@ -32,7 +29,7 @@ public class ProfileController {
                         profileService.getProfile(currentUser.getAppUserId()),
                         "Profile retrieved successfully",
                         HttpStatus.OK
-        )
+                )
         );
     }
 
@@ -50,8 +47,7 @@ public class ProfileController {
 
     @DeleteMapping
     public ResponseEntity<ApiResponse<Void>> deleteUserProfile() {
-        profileService.deleteProfile( SecurityUtils.getCurrentUser().getAppUserId());
-
+        profileService.deleteProfile(SecurityUtils.getCurrentUser().getAppUserId());
         return ResponseEntity.ok(
                 ApiResponse.success(
                         null,
