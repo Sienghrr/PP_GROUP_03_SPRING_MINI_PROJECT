@@ -10,6 +10,7 @@ public interface AppUserRepository {
 
     @Results(id = "appUserMapper", value = {
             @Result(property = "appUserId", column = "app_user_id"),
+            @Result(property = "name", column = "username"),
             @Result(property = "profileImageUrl", column = "profile_image"),
             @Result(property = "isVerified", column = "is_verified"),
             @Result(property = "createdAt", column = "created_at")
@@ -51,7 +52,7 @@ public interface AppUserRepository {
                 username, email, password, level, xp, profile_image, is_verified
             )
             VALUES (
-                #{username}, #{email}, #{password}, #{level}, #{xp}, #{profileImageUrl}, #{isVerified}
+                #{name}, #{email}, #{password}, #{level}, #{xp}, #{profileImageUrl}, #{isVerified}
             )
             RETURNING *
             """)

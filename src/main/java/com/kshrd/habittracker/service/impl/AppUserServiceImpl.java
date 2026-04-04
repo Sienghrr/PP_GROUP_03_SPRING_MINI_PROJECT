@@ -13,13 +13,15 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class AppUserServiceImpl implements AppUserService {
     private final AppUserRepository appUserRepository;
+
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         AppUser appUser = appUserRepository.findByEmail(email);
 
-        if(appUser == null) {
-            System.out.println("User not found");
+        if (appUser == null) {
+            throw new UsernameNotFoundException("User not found with email: " + email);
         }
+
         return appUser;
     }
 }
