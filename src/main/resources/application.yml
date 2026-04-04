@@ -46,3 +46,8 @@ app:
     resend-cooldown-seconds: 60
     verify-max-attempts: 5
     verify-window-minutes: 10
+
+s3:
+  uri: http://localhost:9001
+  accessKeyId: admin
+  secretAccessKey: password
