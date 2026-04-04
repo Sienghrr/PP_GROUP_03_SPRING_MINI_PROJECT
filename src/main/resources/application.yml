@@ -1,51 +1,48 @@
 server:
-  port: 8080
+  port: ${SERVER_PORT}
+
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/habit_tracker
-    username: dongsiengly
-    password: hrd123
+    url: jdbc:postgresql://${HOST_ADDR}:${POSTGRES_PORT}/${POSTGRES_DB}
+    username: ${POSTGRES_USER}
+    password: ${POSTGRES_PASSWORD}
 
-#  data:
-#    redis:
-#      host: localhost
-#      port: 6379
-#      timeout: 6000
-#
-#  mail:
-#    host: smtp.gmail.com
-#    port: 587
-#    username: your_email@gmail.com
-#    password: your_app_password
-#    properties:
-#      mail:
-#        smtp:
-#          auth: true
-#          starttls:
-#            enable: true
-#
-#  thymeleaf:
-#    prefix: classpath:/templates/
-#    suffix: .html
-#    mode: HTML
-#    cache: false
-#
-#mybatis:
-#  type-aliases-package: com.example.habittracker.model
-#  configuration:
-#    map-underscore-to-camel-case: true
-#
-#app:
-#  jwt:
-#    secret: your-very-long-secret-key-your-very-long-secret-key
-#    access-token-expiration-ms: 86400000
-#
-#  otp:
-#    ttl-minutes: 5
-#    resend-cooldown-seconds: 60
-#    verify-max-attempts: 5
-#    verify-window-minutes: 10
-#
-#  file:
-#    upload-dir: uploads
-#    base-url: http://localhost:8080/api/v1/files/preview-file
+  data:
+    redis:
+      host: ${HOST_ADDR}
+      port: ${REDIS_PORT}
+      timeout: ${REDIS_TIMEOUT}
+
+  mail:
+    host: ${MAIL_HOST_ADDR}
+    port: ${MAIL_PORT}
+    username: ${MAIL_USERNAME}
+    password: ${MAIL_PASSWORD}
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
+    mode: HTML
+    cache: false
+
+mybatis:
+  type-aliases-package: com.kshrd.habittracker.model
+  configuration:
+    map-underscore-to-camel-case: true
+
+app:
+  jwt:
+    secret: ${SECRET_KEY}
+    access-token-expiration-ms: ${EXPIRED_DURATION}
+
+  otp:
+    ttl-minutes: 5
+    resend-cooldown-seconds: 60
+    verify-max-attempts: 5
+    verify-window-minutes: 10
