@@ -46,3 +46,8 @@ app:
     resend-cooldown-seconds: 60
     verify-max-attempts: 5
     verify-window-minutes: 10
+
+s3:
+  uri: ${S3_URI}
+  accessKeyId: ${S3_ACCESS_KEY}
+  secretAccessKey: ${S3_SECRET_KEY}
