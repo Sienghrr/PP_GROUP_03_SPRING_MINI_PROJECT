@@ -9,4 +9,7 @@ public interface AchievementService {
 
 
     List<Achievement> getAllAchievements(Integer page, Integer size);
+
+    List<Achievement> getAchievementsByUserId(UUID appUserId, Integer page, Integer size);
+
 }
