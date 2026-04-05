@@ -4,6 +4,7 @@ import com.kshrd.habittracker.dto.request.habitlog.CreateHabitLogRequest;
 import com.kshrd.habittracker.dto.response.ApiResponse;
 import com.kshrd.habittracker.model.HabitLog;
 import com.kshrd.habittracker.service.HabitLogService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +17,7 @@ import java.util.UUID;
 @RequestMapping("api/v1/habit-log/")
 @RequiredArgsConstructor
 @Validated
+@SecurityRequirement(name = "bearerAuth")
 public class HabitLogController {
 
     private final HabitLogService habitLogService;
