@@ -123,7 +123,7 @@ public class AuthServiceImpl implements AuthService {
         }
 
         AppUser user = AppUser.builder()
-                .username(pendingUser.getUsername())
+                .name(pendingUser.getUsername())
                 .email(pendingUser.getEmail())
                 .password(pendingUser.getPassword())
                 .level(1)
@@ -178,7 +178,7 @@ public class AuthServiceImpl implements AuthService {
                 throw new UnauthorizedException("Your account is not verified yet. Please verify your email before logging in.");
             }
 
-            String token = jwtUtils.generateToken(user.getAppUserId(), user.getEmail());
+            String token = jwtUtils.generateToken(user.getEmail());
             rateLimitService.reset(rateKey);
 
             return AuthResponse.builder()

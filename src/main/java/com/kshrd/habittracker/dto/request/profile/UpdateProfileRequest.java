@@ -5,7 +5,7 @@ import lombok.Data;
 
 @Data
 public class UpdateProfileRequest {
-    @NotBlank
+    @NotBlank(message = "username cannot be blank")
     private String username;
 
     private String profileImageUrl;
