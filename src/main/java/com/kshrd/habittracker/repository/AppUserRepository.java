@@ -69,10 +69,22 @@ public interface AppUserRepository {
                       @Param("profileImage") String profileImage);
 
 
-
     @Delete("""
             DELETE FROM app_users
             WHERE app_user_id = #{appUserId}
             """)
     int deleteById(@Param("appUserId") UUID appUserId);
+
+
+    @Update("""
+                UPDATE app_users
+                SET xp = #{xp},
+                    level = #{level}
+                WHERE app_user_id = #{userId}
+            """)
+    void updateUserXpAndLevel(
+            @Param("userId") UUID userId,
+            @Param("xp") int xp,
+            @Param("level") int level
+    );
 }
