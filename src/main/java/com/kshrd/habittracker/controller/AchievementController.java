@@ -22,6 +22,21 @@ import java.util.List;
 public class AchievementController {
 
     private final AchievementService achievementService;
+    @GetMapping
+    public ResponseEntity<ApiResponse<List<Achievement>>> getAllAchievements(
+            @RequestParam(required = false , defaultValue = "1") Integer page,
+            @RequestParam(required = false , defaultValue = "10") Integer size
+
+    ) {
+        return ResponseEntity.ok(
+                ApiResponse.success(
+                        achievementService.getAllAchievements(page,size),
+                        "Achievements retrieved successfully!",
+                        HttpStatus.OK
+                )
+        );
+    }
+
 
 
 }
