@@ -14,7 +14,9 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class AchievementServiceImpl implements AchievementService {
     private final AchievementRepository achievementRepository;
-
-
-
+    @Cacheable(value = "achievementListCache")
+    @Override
+    public List<Achievement> getAllAchievements(Integer page, Integer size) {
+        return achievementRepository.findAll(page,size);
+    }
 }
