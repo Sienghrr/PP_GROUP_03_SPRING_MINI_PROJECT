@@ -22,21 +22,35 @@ import java.util.List;
 public class AchievementController {
 
     private final AchievementService achievementService;
+
     @GetMapping
     public ResponseEntity<ApiResponse<List<Achievement>>> getAllAchievements(
-            @RequestParam(required = false , defaultValue = "1") Integer page,
-            @RequestParam(required = false , defaultValue = "10") Integer size
+            @RequestParam(required = false, defaultValue = "1") Integer page,
+            @RequestParam(required = false, defaultValue = "10") Integer size
 
     ) {
         return ResponseEntity.ok(
                 ApiResponse.success(
-                        achievementService.getAllAchievements(page,size),
+                        achievementService.getAllAchievements(page, size),
                         "Achievements retrieved successfully!",
                         HttpStatus.OK
                 )
         );
     }
 
+    @GetMapping("/app-users")
+    public ResponseEntity<ApiResponse<List<Achievement>>> getAchievementsByAppUserId(
+            @RequestParam(required = false, defaultValue = "1") Integer page,
+            @RequestParam(required = false, defaultValue = "10") Integer size
+    ) {
+        return ResponseEntity.ok(
+                ApiResponse.success(
+                        achievementService.getAchievementsByUserId(SecurityUtils.getCurrentUser().getAppUserId(), page, size),
+                        "Achievements retrieved successfully!",
+                        HttpStatus.OK
+                )
+        );
+    }
 
 
 }

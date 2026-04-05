@@ -19,6 +19,19 @@ public interface AchievementRepository {
                 LIMIT #{size}
                 OFFSET (#{page}-1) * #{size}
             """)
-    List<Achievement> findAll(Integer page,Integer size);
+    List<Achievement> findAll(Integer page, Integer size);
+
+    @ResultMap("achievementMapper")
+    @Select("""
+                SELECT a.*
+                FROM achievements a
+                JOIN app_user_achievements aua ON a.achievement_id = aua.achievement_id
+                WHERE aua.app_user_id = #{appUserId}
+                ORDER BY a.xp_required ASC
+                LIMIT #{size}
+                OFFSET (#{page}-1) * #{size}
+            """)
+    List<Achievement> findAllByUserId(UUID appUserId, Integer page, Integer size);
+
 
 }
